@@ -36,10 +36,18 @@ echo " 7/$number_of_actions Adding kerkel module"
 sudo modprobe overlay
 sudo modprobe br_netfilter
 
-cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
-overlay
-br_netfilter
-EOF
+#
+#cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+#overlay
+#br_netfilter
+#EOF
+echo "   - touch file"
+touch /etc/modules-load.d/k8s.conf
+echo "   - overlay"
+echo "overlay" >> /etc/modules-load.d/k8s.conf
+echo "   - br_netfilter"
+echo "br_netfilter" >> /etc/modules-load.d/k8s.conf
+
 
 cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-ip6tables = 1
@@ -52,17 +60,17 @@ sudo sysctl --system > /dev/null
 
 # Remove all old versions of docker
 echo " 9/$number_of_actions Removed oldversions of docker"
-sudo apt remove docker-compose docker.io-doc docker2aci docker-doc docker-ce docker.io docker docker-clean docker-registry docker-ce -y > /dev/null
+sudo apt-get remove docker-compose docker.io-doc docker2aci docker-doc docker-ce docker.io docker docker-clean docker-registry docker-ce -y > /dev/null
 
 # Adding docker repository
 echo "10/$number_of_actions Adding docker repository"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
 sudo echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/$lsb_dist $dist_version stable" > /etc/apt/sources.list.d/docker.list
-sudo apt update > /dev/null
+sudo apt-get update > /dev/null
 
 # Install Docker
 echo "11/$number_of_actions Install new docker version"
-sudo apt install -y containerd.io docker-ce docker-ce-cli > /dev/null
+sudo apt-get install -y containerd.io docker-ce docker-ce-cli > /dev/null
 
 # Make required directory
 echo "12/$number_of_actions creating directories"
