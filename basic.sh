@@ -8,9 +8,13 @@ lsb_dist="$(. /etc/os-release && echo "$ID")"
 
 # Install nessesary packages
 echo " 2/$number_of_actions Update and Install needed packages."
+echo "   - apt update"
 sudo apt-get update > /dev/null
+echo "   - apt upgrade"
 sudo apt-get upgrade -y > /dev/null
+echo "   - apt autoremove"
 sudo apt-get autoremove -y > /dev/null
+echo "   - apt install"
 sudo apt-get install apt-transport-https ca-certificates curl gnupg2 vim git software-properties-common -y > /dev/null
 
 # Disable swap
