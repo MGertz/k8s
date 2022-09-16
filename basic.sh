@@ -1,19 +1,22 @@
 #!/bin/bash
+number_of_actions=10
+
 
 # variables
+echo "1/$number_of_actions Collect variables"
 dist_version=$(lsb_release -cs)
 lsb_dist="$(. /etc/os-release && echo "$ID")"
 
+pause 'press [enter] to continue...'
+
 # Install nessesary packages
-echo "Update and Install needed packages."
+echo "2/$number_of_actions Update and Install needed packages."
 sudo apt update > /dev/null
 sudo apt upgrade -y > /dev/null
 sudo apt autoremove -y > /dev/null
 sudo apt install apt-transport-https ca-certificates curl gnupg2 vim git software-properties-common -y > /dev/null
 
-# Check release
-echo "Check OS Release"
-cat /etc/os-release
+pause 'press [enter] to continue...'
 
 # Disable swap
 echo "Swap off"
@@ -23,12 +26,15 @@ sudo swapoff -a
 echo "Disable swap"
 sudo sed -i "s/\/swap.img/#\/swap.img/g" /etc/fstab
 
+pause 'press [enter] to continue...'
 
 # Disable firewall
 echo "Stopping firewall"
 sudo systemctl stop ufw
 echo "Disabling firewall"
 sudo systemctl disable ufw
+
+pause 'press [enter] to continue...'
 
 # add kernel modules
 echo "Adding kerkel module"
