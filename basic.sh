@@ -115,9 +115,9 @@ echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt
 
 # Install kubernetes
 echo "18/$number_of_actions apt update"
-sudo apt-get update
+sudo apt-get update > /dev/null
 echo "19/$number_of_actions apt install packages"
-sudo apt install kubelet kubeadm kubectl -y
+sudo apt-get install kubelet kubeadm kubectl -y > /dev/null
 echo "20/$number_of_actions lock kubernetes to specific version"
 sudo apt-mark hold kubelet kubeadm kubectl
 
