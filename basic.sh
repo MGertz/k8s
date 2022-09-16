@@ -7,7 +7,7 @@ echo "1/$number_of_actions Collect variables"
 dist_version=$(lsb_release -cs)
 lsb_dist="$(. /etc/os-release && echo "$ID")"
 
-read -p 'press [enter] to continue...'
+read -p "press [enter] to continue..."
 
 # Install nessesary packages
 echo "2/$number_of_actions Update and Install needed packages."
@@ -16,7 +16,7 @@ sudo apt-get upgrade -y > /dev/null
 sudo apt-get autoremove -y > /dev/null
 sudo apt-get install apt-transport-https ca-certificates curl gnupg2 vim git software-properties-common -y > /dev/null
 
-read -p 'press [enter] to continue...'
+read -p "press [enter] to continue..."
 
 # Disable swap
 echo "Swap off"
