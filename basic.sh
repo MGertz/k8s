@@ -7,7 +7,7 @@ echo ' (   ) Kubernetes Setup    '
 echo ' -"-"----------------------\n\n'
 
 
-number_of_actions=16
+number_of_actions=20
 
 # variables
 echo " 1/$number_of_actions Collect variables"
@@ -107,8 +107,19 @@ sudo systemctl restart docker > /dev/null
 echo "16/$number_of_actions Enable daemon"
 sudo systemctl enable docker > /dev/null
 
+# Adding repository for kubernetes
+echo "17/$number_of_actions Adding repository for kubernetes"
+curl -fsSL  https://packages.cloud.google.com/apt/doc/apt-key.gpg|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/k8s.gpg
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
-
+# Install kubernetes
+echo "18/$number_of_actions apt update"
+sudo apt-get update
+echo "19/$number_of_actions apt install packages"
+sudo apt install kubelet kubeadm kubectl -y
+echo "20/$number_of_actions lock kubernetes to specific version"
+sudo apt-mark hold kubelet kubeadm kubectl
 
 
 
