@@ -4,7 +4,7 @@ clear
 echo '  ^ ^                      '
 echo ' (O,O)                     '
 echo ' (   ) Kubernetes Setup    '
-echo ' -"-"----------------------'
+echo ' -"-"----------------------\n\n'
 
 
 number_of_actions=16
@@ -35,9 +35,9 @@ sudo sed -i "s/\/swap.img/#\/swap.img/g" /etc/fstab
 
 # Disable firewall
 echo " 5/$number_of_actions Stopping firewall"
-sudo systemctl stop ufw
+sudo systemctl stop ufw > /dev/null
 echo " 6/$number_of_actions Disabling firewall"
-sudo systemctl disable ufw
+sudo systemctl disable ufw > /dev/null
 
 # add kernel modules
 echo " 7/$number_of_actions Adding kerkel module"
@@ -77,16 +77,27 @@ sudo mkdir -p /etc/systemd/system/docker.service.d
 
 # Create daemon json config file
 echo "13/$number_of_actions Create daemon config file"
-sudo tee /etc/docker/daemon.json <<EOF
-{
-  "exec-opts": ["native.cgroupdriver=systemd"],
-  "log-driver": "json-file",
-  "log-opts": {
-    "max-size": "100m"
-  },
-  "storage-driver": "overlay2"
-}
-EOF
+sudo touch /etc/docker/daemon.json
+sudo echo "{" >> /etc/docker/daemon.json
+sudo echo '  "exec-opts": ["native.cgroupdriver=systemd"],' >> /etc/docker/daemon.json
+sudo echo '  "log-driver": "json-file",' >> /etc/docker/daemon.json
+sudo echo '  "log-opts": {' >> /etc/docker/daemon.json
+sudo echo '    "max-size": "100m"' >> /etc/docker/daemon.json
+sudo echo '    "max-size": "100m"' >> /etc/docker/daemon.json
+sudo echo '  },' >> /etc/docker/daemon.json
+sudo echo '  "storage-driver": "overlay2"' > /etc/docker/daemon.json
+sudo echo '}' >> /etc/docker/daemon.json
+
+#sudo tee /etc/docker/daemon.json <<EOF
+#{
+#  "exec-opts": ["native.cgroupdriver=systemd"],
+#  "log-driver": "json-file",
+#  "log-opts": {
+#    "max-size": "100m"
+#  },
+#  "storage-driver": "overlay2"
+#}
+#EOF
 
 # Start and enable Services
 echo "14/$number_of_actions Restarting daemon"
