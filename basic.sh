@@ -1,4 +1,12 @@
 #!/bin/bash
+clear
+
+echo '  ^ ^                      '
+echo ' (O,O)                     '
+echo ' (   ) Kubernetes Setup    '
+echo ' -"-"----------------------'
+
+
 number_of_actions=16
 
 # variables
@@ -36,23 +44,14 @@ echo " 7/$number_of_actions Adding kerkel module"
 sudo modprobe overlay
 sudo modprobe br_netfilter
 
-#
-#cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
-#overlay
-#br_netfilter
-#EOF
-echo "   - touch file"
-touch /etc/modules-load.d/k8s.conf
-echo "   - overlay"
-echo "overlay" >> /etc/modules-load.d/k8s.conf
-echo "   - br_netfilter"
-echo "br_netfilter" >> /etc/modules-load.d/k8s.conf
+sudo touch /etc/modules-load.d/k8s.conf
+sudo echo "overlay" >> /etc/modules-load.d/k8s.conf
+sudo echo "br_netfilter" >> /etc/modules-load.d/k8s.conf
 
-
-cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
-net.bridge.bridge-nf-call-ip6tables = 1
-net.bridge.bridge-nf-call-iptables = 1
-EOF
+sudo touch /etc/sysctl.d/k8s.conf
+sudo echo "net.bridge.bridge-nf-call-ip6tables = 1" >> /etc/sysctl.d/k8s.conf
+sudo echo "net.bridge.bridge-nf-call-iptables = 1" >> /etc/sysctl.d/k8s.conf
+sudo echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.d/k8s.conf
 
 # Reload sysctl
 echo " 8/$number_of_actions Reload Kernel modules"
@@ -87,7 +86,7 @@ sudo tee /etc/docker/daemon.json <<EOF
   },
   "storage-driver": "overlay2"
 }
-EOF > /dev/null
+EOF
 
 # Start and enable Services
 echo "14/$number_of_actions Restarting daemon"
