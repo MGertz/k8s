@@ -5,7 +5,7 @@ This is how to run the script
 ## Basic Script
 ### IN 2 seperate commands
 ```bash
-wget https://raw.githubusercontent.com/MGertz/k8s/main/basic.sh
+rm basic.sh; wget https://raw.githubusercontent.com/MGertz/k8s/main/basic.sh
 ```
 ```bash
 sudo bash basic.sh
