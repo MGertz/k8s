@@ -88,17 +88,6 @@ sudo echo '  },' >> /etc/docker/daemon.json
 sudo echo '  "storage-driver": "overlay2"' > /etc/docker/daemon.json
 sudo echo '}' >> /etc/docker/daemon.json
 
-#sudo tee /etc/docker/daemon.json <<EOF
-#{
-#  "exec-opts": ["native.cgroupdriver=systemd"],
-#  "log-driver": "json-file",
-#  "log-opts": {
-#    "max-size": "100m"
-#  },
-#  "storage-driver": "overlay2"
-#}
-#EOF
-
 # Start and enable Services
 echo "14/$number_of_actions Restarting daemon"
 sudo systemctl daemon-reload  > /dev/null
@@ -109,8 +98,11 @@ sudo systemctl enable docker > /dev/null
 
 # Adding repository for kubernetes
 echo "17/$number_of_actions Adding repository for kubernetes"
-curl -fsSL  https://packages.cloud.google.com/apt/doc/apt-key.gpg|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/k8s.gpg
+echo "   - Google cloud package"
+curl -fsSL  https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/k8s.gpg
+echo "   - Google cloud package 2"
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+echo "   - deb package"
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 # Install kubernetes
