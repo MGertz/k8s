@@ -28,7 +28,7 @@ curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/node.sh | sudo sh
 # Where comes the knowledge from
 The scripts is based on the following articles
 ### DIFFERENT LINKS FOR THIS SCRIPT
-# Script is based on the following tutorial
-# https://computingforgeeks.com/install-kubernetes-cluster-ubuntu-jammy/
-# https://computingforgeeks.com/install-mirantis-cri-dockerd-as-docker-engine-shim-for-kubernetes/
+Script is based on the following tutorial
+https://computingforgeeks.com/install-kubernetes-cluster-ubuntu-jammy/
+https://computingforgeeks.com/install-mirantis-cri-dockerd-as-docker-engine-shim-for-kubernetes/
 
