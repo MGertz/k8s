@@ -19,7 +19,8 @@ echo " 2/$number_of_actions Update and Install needed packages."
 echo "   - apt update"
 sudo apt-get update > /dev/null
 echo "   - apt upgrade"
-sudo apt-get upgrade -y > /dev/null
+#sudo apt-get upgrade -y > /dev/null
+sudo DEBIAN_FRONTEND=nointeractive apt-get dist-upgrade -y > /dev/null
 echo "   - apt autoremove"
 sudo apt-get autoremove -y > /dev/null
 echo "   - apt install"
@@ -100,10 +101,18 @@ sudo systemctl enable docker > /dev/null
 echo "17/$number_of_actions Adding repository for kubernetes"
 echo "   - Google cloud package"
 curl -fsSL  https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/k8s.gpg
-echo "   - Google cloud package 2"
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+
 echo "   - deb package"
-echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+
+# echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+sudo touch /etc/apt/sources.list.d/kubernetes.list
+sudo echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
+
+
+sudo echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/$lsb_dist $dist_version stable" > /etc/apt/sources.list.d/docker.list
 
 # Install kubernetes
 echo "18/$number_of_actions apt update"
