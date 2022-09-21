@@ -3,16 +3,8 @@
 This is how to run the script
 
 ## Basic Script
-### IN 2 seperate commands
-```bash
-rm basic.sh; wget https://raw.githubusercontent.com/MGertz/k8s/main/basic.sh
-```
-```bash
-sudo bash basic.sh
-```
+To do the basic setup of kubernetes first run this script on all machines which is going to be part of the kubernetes cluster
 
-
-### In one command
 ```bash
 curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/basic.sh | sudo sh
 ```
@@ -32,5 +24,11 @@ curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/node.sh | sudo sh
 
 
 
-
+---
+# Where comes the knowledge from
+The scripts is based on the following articles
+### DIFFERENT LINKS FOR THIS SCRIPT
+# Script is based on the following tutorial
+# https://computingforgeeks.com/install-kubernetes-cluster-ubuntu-jammy/
+# https://computingforgeeks.com/install-mirantis-cri-dockerd-as-docker-engine-shim-for-kubernetes/
 
