@@ -50,7 +50,7 @@ function add_missing_repositories() {
     # Adding missing repository
     echo -e "${START_COLOR} 3/$number_of_actions Adding docker repository${NC}"
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
-    sudo echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/$lsb_dist $dist_version stable" > /etc/apt/sources.list.d/docker.list
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/$lsb_dist $dist_version stable" | sudo tee /etc/apt/sources.list.d/docker.list
 
     echo -e "${START_COLOR} 4/$number_of_actions Adding repository for kubernetes${NC}"
 
@@ -58,7 +58,7 @@ function add_missing_repositories() {
     curl -fsSL  https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/k8s.gpg
 
     echo -e "${START_COLOR}   - deb package${NC}"
-    sudo echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+    echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
     # Install kubernetes
     echo -e "${START_COLOR} 5/$number_of_actions apt update${NC}"
@@ -157,7 +157,7 @@ function install_cri_docker() {
 
     #We can then download the archive file from Github cri-dockerd releases page.
     echo -e "${START_COLOR}19/$number_of_actions Download latest version of cri-dockerd${NC}"
-    wget https://github.com/Mirantis/cri-dockerd/releases/download/v${VER}/cri-dockerd-${VER}.amd64.tgz 2>&1
+    wget https://github.com/Mirantis/cri-dockerd/releases/download/v${VER}/cri-dockerd-${VER}.amd64.tgz
     
     echo -e "${START_COLOR}20/$number_of_actions extract latest version of cri-dockerd${NC}"
     tar xvf cri-dockerd-${VER}.amd64.tgz
@@ -169,10 +169,10 @@ function install_cri_docker() {
 
     # Configure systemd units for cri-dockerd:
     echo -e "${START_COLOR}22/$number_of_actions download conf file for service${NC}"
-    wget https://raw.githubusercontent.com/Mirantis/cri-dockerd/master/packaging/systemd/cri-docker.service 2>&1
+    wget https://raw.githubusercontent.com/Mirantis/cri-dockerd/master/packaging/systemd/cri-docker.service
     
     echo -e "${START_COLOR}23/$number_of_actions download conf file for socket${NC}"
-    wget https://raw.githubusercontent.com/Mirantis/cri-dockerd/master/packaging/systemd/cri-docker.socket 2>&1
+    wget https://raw.githubusercontent.com/Mirantis/cri-dockerd/master/packaging/systemd/cri-docker.socket
     
     echo -e "${START_COLOR}24/$number_of_actions move files to correct location${NC}"
     sudo mv cri-docker.socket cri-docker.service /etc/systemd/system/
