@@ -115,14 +115,9 @@ function add_kernel_modules() {
     sudo modprobe overlay
     sudo modprobe br_netfilter
 
-    sudo touch /etc/modules-load.d/k8s.conf
-    sudo echo "overlay" >> /etc/modules-load.d/k8s.conf
-    sudo echo "br_netfilter" >> /etc/modules-load.d/k8s.conf
+    echo -e "overlay\nbr_netfilter" | sudo tee /etc/modules-load.d/k8s.conf
 
-    sudo touch /etc/sysctl.d/k8s.conf
-    sudo echo "net.bridge.bridge-nf-call-ip6tables = 1" >> /etc/sysctl.d/k8s.conf
-    sudo echo "net.bridge.bridge-nf-call-iptables = 1" >> /etc/sysctl.d/k8s.conf
-    sudo echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.d/k8s.conf
+    echo -e "net.bridge.bridge-nf-call-ip6tables = 1\nnet.bridge.bridge-nf-call-iptables = 1\nnet.ipv4.ip_forward = 1" | sudo tee /etc/sysctl.d/k8s.conf
 
     # Reload sysctl
     echo -e "${START_COLOR}12/$number_of_actions Reload Kernel modules${NC}"
@@ -137,17 +132,9 @@ function config_docker() {
 
     # Create daemon json config file
     echo -e "${START_COLOR}14/$number_of_actions Create daemon config file${NC}"
-    sudo tee /etc/docker/daemon.json <<EOF
-{
-    "exec-opts": ["native.cgroupdriver=systemd"],
-    "log-driver": "json-file",
-    "log-opts": {
-      "max-size": "100m"
-    },
-    "storage-driver": "overlay2"
-}
-EOF
-
+    
+    sudo mkdir -p /etc/docker
+    echo -e "{\n  \"exec-opts\": [\"native.cgroupdriver=systemd\"],\n  \"log-driver\": \"json-file\",\n  \"log-opts\": {\n    \"max-size\": \"100m\"\n  },\n  \"storage-driver\": \"overlay2\"\n}" | sudo tee /etc/docker/daemon.json
 
     # Start and enable Services
     echo -e "${START_COLOR}15/$number_of_actions Restarting daemon${NC}"
