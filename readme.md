@@ -6,7 +6,7 @@ This is how to run the script
 To do the basic setup of kubernetes first run this script on all machines which is going to be part of the kubernetes cluster
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/basic.sh | sudo sh
+curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/basic.sh | bash
 ```
 
 
