@@ -76,8 +76,8 @@ function install_packages() {
     echo -e "${START_COLOR}   - apt upgrade${NC}"
     sudo DEBIAN_FRONTEND=nointeractive apt-get dist-upgrade -y
 
-#    echo -e "${START_COLOR}   - apt autoremove${NC}"
-#    sudo apt-get autoremove -y
+    echo -e "${START_COLOR}   - apt autoremove${NC}"
+    sudo apt-get autoremove -y
 
     echo -e "${START_COLOR}   - apt install${NC}"
     #sudo apt-get install -y apt-transport-https ca-certificates curl gnupg2 vim git software-properties-common containerd.io docker-ce docker-ce-cli kubelet kubeadm kubectl
