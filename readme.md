@@ -9,6 +9,15 @@ To do the basic setup of kubernetes first run this script on all machines which 
 curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/basic.sh | bash
 ```
 
+## Setup first Control Plane master
+This script will initialize the first control plane master, and add network for pods
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/first_master.sh | bash
+```
+
+
+
 
 
 # Final way of calling the different scripts
