@@ -1,3 +1,28 @@
+#!/bin/bash
+clear
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+START_COLOR=${CYAN}
+
+#echo -n ${LINES}
+#echo -n ${COLUMNS}
+
+echo -e ${CYAN}
+echo ' _  ___    _ ____  ______ _____  _   _ ______ _______ ______  _____  '
+echo '| |/ / |  | |  _ \|  ____|  __ \| \ | |  ____|__   __|  ____|/ ____| '
+echo "| ' /| |  | | |_) | |__  | |__) |  \| | |__     | |  | |__  | (___   "
+echo '|  < | |  | |  _ <|  __| |  _  /| . ` |  __|    | |  |  __|  \___ \  '
+echo '| . \| |__| | |_) | |____| | \ \| |\  | |____   | |  | |____ ____) | '
+echo '|_|\_\\____/|____/|______|_|  \_\_| \_|______|  |_|  |______|_____/  '
+echo -e "\n\n"
+echo -e ${NC}
+
+number_of_actions=7
+
+
 function first_master() {
 #    echo -e "${START_COLOR}SLEET 10 SEC${NC}"
 #    sleep 10
@@ -47,19 +72,3 @@ function network() {
 first_master
 config_kubectl
 network
-
-
-
-# Print command to join cluster
-#kubeadm token create --print-join-command
-
-# Command to join another control plane
-#sudo kubeadm join cp.k8s.local:6443 --token gs7pza.lalml7p4icnho3nw \
-#--discovery-token-ca-cert-hash sha256:9f318d76f2623b27c456fb3c47d57e0fe7ce6fe7150e9894c9f64dbfc3bc8c05 \
-#--control-plane --certificate-key 29c14c6dac7d519eaee75517d4926565009f3dac2a879d3586c22a19a015108f \
-#--cri-socket unix:///run/cri-dockerd.sock 
-
-# Command to join a worker node
-#sudo kubeadm join cp.k8s.local:6443 --token gs7pza.lalml7p4icnho3nw \
-#--discovery-token-ca-cert-hash sha256:9f318d76f2623b27c456fb3c47d57e0fe7ce6fe7150e9894c9f64dbfc3bc8c05\
-#--cri-socket unix:///run/cri-dockerd.sock 
