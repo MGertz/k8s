@@ -74,7 +74,7 @@ function install_packages() {
     sudo apt-get update
 
     echo -e "${START_COLOR}   - apt upgrade${NC}"
-    sudo DEBIAN_FRONTEND=nointeractive apt-get dist-upgrade -y
+    sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 
     echo -e "${START_COLOR}   - apt autoremove${NC}"
     sudo apt-get autoremove -y
