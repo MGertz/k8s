@@ -41,8 +41,12 @@ function remove_old_docker() {
 # 2 
 function prep_system() {
     #disable automaticly upgrade
-    echo -e "${START_COLOR} 2/$number_of_actions disable automaticly upgrade${NC}"
+    echo -e "${START_COLOR} 2/$number_of_actions Prepping System${NC}"
+    echo -e "  - Disable automaticly upgrade${NC}"
     echo -e "APT::Periodic::Update-Package-Lists \"0\";\nAPT::Periodic::Unattended-Upgrade \"0\";\n"  | sudo tee /etc/apt/apt.conf.d/20auto-upgrades
+
+    echo -e "  - Disable needrestart${NC}"
+    sudo sed -i "s/#\$nrconf{restart} = 'i';/\$nrconf{restart} = 'a';/g" /etc/needrestart/needrestart.conf
 }
 
 # 
