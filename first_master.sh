@@ -36,8 +36,8 @@ function first_master() {
     echo -e "${START_COLOR} 2/$number_of_actions Pull images${NC}"
     sudo kubeadm config images pull --cri-socket unix:///run/cri-dockerd.sock 
 
-#    echo -e "${START_COLOR}SLEET 10 SEC${NC}"
-#    sleep 10
+    echo -e "${START_COLOR}SLEET 60 SEC${NC}"
+    sleep 60
 
     echo -e "${START_COLOR} 3/$number_of_actions Initialize cluster${NC}"
     sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --upload-certs --control-plane-endpoint=cp.k8s.local --cri-socket unix:///run/cri-dockerd.sock 
