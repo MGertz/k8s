@@ -27,6 +27,8 @@ curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/first_master.sh | b
 ```
 
 ## Setup Dashboard
+Install dashboard for a simple way of controlling the cluster
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/dashboard.sh | bash
 ```
