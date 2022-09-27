@@ -1,6 +1,6 @@
 
-wget https://raw.githubusercontent.com/MGertz/k8s/main/dashboard.admn-user-role.yml
-wget https://raw.githubusercontent.com/MGertz/k8s/main/dashboard.admn-user.yml
+wget https://raw.githubusercontent.com/MGertz/k8s/main/dashboard.admin-user-role.yml
+wget https://raw.githubusercontent.com/MGertz/k8s/main/dashboard.admin-user.yml
 wget https://raw.githubusercontent.com/MGertz/k8s/main/dashboard.nodeport_patch.yaml
 wget https://raw.githubusercontent.com/MGertz/k8s/main/dashboard.recommended.yaml
 
