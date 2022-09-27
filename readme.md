@@ -43,7 +43,7 @@ kubectl -n kubernetes-dashboard create token admin-user
 Run this command to deploy a nginx webserver
 
 ```bash
-wget https://raw.githubusercontent.com/MGertz/k8s/main/deployments/test-mysite.yml
+wget https://raw.githubusercontent.com/MGertz/k8s/main/deployments/test-mysite.yml; \
 kubectl apply -f test-mysite.yml
 ```
 
