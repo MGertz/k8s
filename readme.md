@@ -39,6 +39,14 @@ Command to generate tokens to connect to dashboard
 kubectl -n kubernetes-dashboard create token admin-user
 ```
 
+## Test deployment
+Run this command to deploy a nginx webserver
+
+```bash
+wget https://raw.githubusercontent.com/MGertz/k8s/main/deployments/test-mysite.yml
+kubectl apply -f test-mysite.yml
+```
+
 
 
 ---
