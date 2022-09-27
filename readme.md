@@ -16,21 +16,21 @@ sudo reboot
 To do the basic setup of kubernetes first run this script on all machines which is going to be part of the kubernetes cluster
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/basic.sh | bash
+curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/k8s/basic.sh | bash
 ```
 
 ## Setup first Control Plane master
 This script will initialize the first control plane master, and add network for pods
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/first_master.sh | bash
+curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/k8s/first_master.sh | bash
 ```
 
 ## Setup Dashboard
 Install dashboard for a simple way of controlling the cluster
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/dashboard.sh | bash
+curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/k8s/dashboard.sh | bash
 ```
 
 Command to generate tokens to connect to dashboard
