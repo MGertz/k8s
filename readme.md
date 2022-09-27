@@ -2,6 +2,12 @@
 
 This is how to run the script
 
+Before running the scripts, prep the system by running the following command, it will restart the server in the end.
+```bash
+sudo apt update; sudo apt upgrade -y; sudo apt autoremove -y; sudo apt install libnss-systemd libpam-systemd libsystemd0 libudev1 systemd systemd-sysv systemd-timesyncd udev -y; sudo reboot
+```
+
+
 ## Basic Script
 To do the basic setup of kubernetes first run this script on all machines which is going to be part of the kubernetes cluster
 
