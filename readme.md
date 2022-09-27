@@ -31,6 +31,12 @@ curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/first_master.sh | b
 curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/dashboard.sh | bash
 ```
 
+Command to generate tokens to connect to dashboard
+
+```bash
+kubectl -n kubernetes-dashboard create token admin-user
+```
+
 
 
 ---
