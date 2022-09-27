@@ -26,19 +26,9 @@ This script will initialize the first control plane master, and add network for 
 curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/first_master.sh | bash
 ```
 
-
-
-
-
-# Final way of calling the different scripts
-## Master Script
+## Setup Dashboard
 ```bash
-curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/master.sh | sudo sh
-```
-
-## Node Script
-```bash
-curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/node.sh | sudo sh
+curl -fsSL https://raw.githubusercontent.com/MGertz/k8s/main/dashboard.sh | bash
 ```
 
 
