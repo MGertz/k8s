@@ -1,0 +1,19 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+  namespace: kube-system
+spec:
+  acme:
+    # Email used for ACME registration, this is also the email where notifications about certificated about to expire will be received
+    email: michael@ringhus.dk
+    # The ACME production server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    # Enable the HTTP-01 challenge provider
+    solvers:
+    - http01:
+        ingress:
+          class: traefik-ingress
